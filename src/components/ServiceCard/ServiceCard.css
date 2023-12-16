@@ -1,0 +1,59 @@
+.ServiceCard-OnClick {
+  text-decoration: none;
+  width: fit-content;
+}
+
+.ServiceCard-Container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  font-family: "Work Sans", sans-serif;
+  width: 350px;
+}
+
+.ServiceCard-Container:hover {
+  background: #dddddd;
+}
+
+.ServiceCard-Header ion-img {
+  margin: -1.2em -1.2em 0 -1.2em;
+}
+
+.ServiceCard-Content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0 40px;
+  height: 200px;
+}
+
+.ServiceCard-Content div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #000;
+}
+
+.ServiceCard-Content div ion-card-title {
+  font-size: 20px;
+  color: #1f2b6c;
+}
+
+.ServiceCard-Desc ion-card-subtitle {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.ServiceCard-Link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #159eec;
+  text-decoration: none;
+}
+
+.ServiceCard-Link ion-icon {
+  color: #000;
+}

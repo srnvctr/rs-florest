@@ -1,0 +1,47 @@
+.UserProfile-Content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.UserProfile-Content ion-input {
+  --color: #000;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 600;
+}
+
+.UserProfile-Content ion-select {
+  --placeholder-color: #000;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 600;
+}
+
+.UserProfile-Content ion-select::part(text) {
+  color: #000;
+}
+
+.UserProfile-Content div {
+  display: flex;
+  justify-content: end;
+}
+
+.UserProfile-Content ion-button {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 600;
+  text-transform: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.UserProfile-Gender,
+.UserProfile-Gender.select-disabled,
+.UserProfile-Disabled.input-disabled {
+  opacity: 1;
+  color: #000;
+}

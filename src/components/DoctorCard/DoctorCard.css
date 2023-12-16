@@ -1,0 +1,62 @@
+.DoctorCard-OnClick {
+  text-decoration: none;
+  width: fit-content;
+}
+
+.DoctorCard-Container {
+  display: flex;
+  flex-direction: column;
+  font-family: "Work Sans", sans-serif;
+  background-color: #1f2b6c;
+  width: 320px;
+}
+
+.DoctorCard-Container:hover {
+  background-color: #0f1544;
+}
+
+.DoctorCard-Header {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  background-color: #bfd2f8;
+}
+
+.DoctorCard-Header:hover {
+  background-color: #9fb1d7;
+}
+
+.DoctorCard-Header ion-img {
+  margin: -1.2em;
+}
+
+.DoctorCard-Header section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.DoctorCard-Header section ion-card-subtitle,
+.DoctorCard-Header section ion-card-title {
+  font-size: 18px;
+  color: #1f2b6c;
+}
+
+.DoctorCard-Header section ion-card-title {
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.DoctorCard-Content {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.DoctorCard-Content ion-card-subtitle {
+  font-size: 17px;
+  padding: 10px 0;
+  color: #bfd2f8;
+}

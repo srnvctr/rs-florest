@@ -1,0 +1,100 @@
+.LoginForm_Container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+}
+
+.LoginForm_Wrapper {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  box-shadow: 8px 10px 5px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.LoginForm_LeftSideCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color:#1f2b6c;
+  font-family: "Yeseva One", serif;
+  padding: 42px;
+  gap: 10px;
+}
+
+.LoginForm-LogoPhoto {
+  width: 100px;
+  height: 100px;
+}
+
+.LoginForm_LeftSideCardTitle {
+  padding-top: 30px;
+  font-size: 40px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.LoginForm_RightSideCard {
+  background-color: #fff;
+  padding: 30px 0;
+  font-family: "Work Sans", sans-serif;
+  width: fit-content;
+}
+
+.LoginForm_RightSideCardTitle {
+  font-size: 50px;
+  font-weight: bold;
+  font-family: "Work Sans", sans-serif;
+  text-align: center;
+  letter-spacing: 2px;
+  color: #1f2b6c;
+  padding-bottom: 30px;
+}
+
+.LoginForm_Title {
+  font-size: 50px;
+  font-weight: 600;
+  text-align: center;
+  color: #1f2b6c;
+}
+
+.LoginForm_InputForm {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0 10px;
+  width: 600px;
+}
+
+.LoginForm_LoginBtn {
+  text-transform: none;
+  font-size: 18px;
+  font-family: "Work Sans", sans-serif;
+  --padding-top: 17px;
+  --padding-bottom: 17px;
+  --border-radius: 10px;
+  --background: #1f2b6c;
+}
+
+.LoginForm_ForgotPwd {
+  font-size: 18px;
+  color: #1f2b6c;
+  font-family: "Work Sans", sans-serif;
+  text-decoration: none;
+  text-align: end;
+}
+
+.LoginForm_Register {
+  margin-top: -20px;
+  font-size: 36px;
+  font-family: "Work Sans", sans-serif;
+  text-align: center;
+}
+
+.LoginForm_Register a{
+    text-decoration: none;
+}

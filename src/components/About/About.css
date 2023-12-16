@@ -1,0 +1,183 @@
+.About-Wrapper {
+  margin-top: -2em;
+}
+
+.About-Container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Work Sans", sans-serif;
+}
+
+.About-ContentWrapper ion-row:nth-of-type(3),
+.About-ContentWrapper ion-row:nth-of-type(4) {
+  max-width: 564px;
+  padding-bottom: 16px;
+}
+
+.About-FeatureText {
+  color: #159eec;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.About-HighlightText {
+  color: #1f2b6c;
+  font-size: 48px;
+  max-width: 450px;
+  margin: 0;
+  font-family: "Yeseva One", serif;
+}
+
+.About-ContentList ion-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 18px;
+  list-style: none;
+}
+
+.About-ContentList ion-col ul li::before {
+  display: inline-block;
+  width: 1em;
+  margin-left: -2em;
+  content: "\2022";
+  color: #159eec;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.About-Container {
+  display: flex;
+  flex-direction: column;
+  gap: 65px;
+  padding: 50px 0;
+  font-family: "Work Sans", sans-serif;
+}
+
+.About-ContentWrapper ion-row:nth-of-type(3),
+.About-ContentWrapper ion-row:nth-of-type(4) {
+  max-width: 564px;
+  padding-bottom: 16px;
+}
+
+.About-FeatureText {
+  color: #159eec;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.About-HighlightText {
+  color: #1f2b6c;
+  font-size: 48px;
+  max-width: 450px;
+  margin: 0;
+  font-family: "Yeseva One", serif;
+}
+
+.About-ContentList ion-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 18px;
+  list-style: none;
+}
+
+.About-ContentList ion-col ul li::before {
+  display: inline-block;
+  width: 1em;
+  margin-left: -2em;
+  content: "\2022";
+  color: #159eec;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.About-ContactTitle {
+  color: #1f2b6c;
+  font-size: 32px;
+  padding-top: 5px;
+  margin: 0;
+  font-family: "Yeseva One", serif;
+}
+
+.About-ContactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.About-FormContainer {
+  width: 450px;
+}
+
+.About-Form {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  width: auto;
+  background-color: #bfd2f8;
+}
+
+.About-Form ion-item {
+  --background: #1f2b6c;
+  --color: #fcfefe;
+}
+
+.About-Form ion-label {
+  --background: #1f2b6c;
+  --color: #fcfefe;
+}
+
+.About-Form ion-item:nth-child(1) {
+  border-radius: 5px 5px 0 0;
+}
+
+.About-Form ion-input {
+  font-family: "Work Sans", sans-serif;
+}
+
+.About-Form ion-textarea {
+  font-family: "Work Sans", sans-serif;
+  height: 200px;
+}
+
+.About-SubmitBtn {
+  --background: #bfd2f8;
+  --color: #1f2b6c;
+  --box-shadow: none;
+}
+
+.About-ContactCard {
+  font-family: "Work Sans", sans-serif;
+  padding: 30px 30px 30px 30px;
+  --color: #000;
+  --background: #bfd2f8;
+}
+
+.About-CardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #1f2b6c;
+}
+
+.About-CardContent ion-card-title {
+  padding-top: 10px;
+  font-weight: 700;
+  font-size: 20px;
+  color: #1f2b6c;
+}
+
+.About-CardContent ion-card-subtitle {
+  line-height: 140%;
+  font-size: 16px;
+  font-weight: 400;
+  color: #1f2b6c;
+}
+
+.About-ContactCardWrapper {
+  padding: 0px 30px;
+}

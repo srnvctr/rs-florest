@@ -1,0 +1,212 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&family=Yeseva+One&display=swap");
+
+.Homepage-Wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  font-family: "Work Sans", sans-serif;
+  background-color: #fff;
+  color: #000;
+}
+
+.Homepage-FeatureText {
+  font-size: 20px;
+  font-weight: 700;
+  color: #159eec;
+  letter-spacing: 3px;
+}
+
+.Homepage-HighlightText {
+  font-family: "Yeseva One", serif;
+  font-size: 34px;
+  font-weight: 400;
+  color: #1f2b6c;
+}
+
+.Homepage-TitleWrapper {
+  text-align: center;
+}
+
+/* Hero Section */
+
+.Homepage-HeroSection img {
+  position: relative;
+  width: 100%;
+}
+
+.Homepage-HeroContent {
+  position: absolute;
+  top: 22%;
+  left: 15%;
+}
+
+.Homepage-HeroContent h1 {
+  font-family: "Yeseva One", serif;
+  font-size: 48px;
+  font-weight: 400;
+  color: #1f2b6c;
+  max-width: 500px;
+  word-wrap: break-word;
+}
+
+.Homepage-HeroContent ion-button {
+  text-transform: none;
+  font-size: 16px;
+
+  --background: #bfd2f8;
+  --color: #000;
+  --border-radius: 40px;
+  --box-shadow: none;
+
+  --padding-top: 13px;
+  --padding-end: 35px;
+  --padding-bottom: 13px;
+  --padding-start: 35px;
+}
+
+/* About Us Section */
+
+.Homepage-AboutUsSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 30px;
+}
+
+.Homepage-AboutUsSection ion-text {
+  max-width: 650px;
+}
+
+.Homepage-AboutUsLink {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  color: #159eec;
+}
+
+/* Our Services Section */
+
+.Homepage-OurServicesSection {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding-bottom: 40px;
+}
+
+.Homepage-OurServicesContentLeft {
+  background-color: #fff;
+  border: 1px solid #c9c9c9;
+  border-radius: 5px;
+}
+
+.Homepage-OurServicesContentLeft ion-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 5px;
+}
+
+.Homepage-OurServicesLink {
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+}
+
+.Homepage-OurServicesLink ion-col {
+  background-color: #1f2b6c;
+}
+
+.Homepage-OurServicesContentMiddleTitle {
+  font-size: 26px;
+  font-weight: 500;
+  padding: 15px 0;
+}
+
+.Homepage-OurServicesContentMiddleList ion-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 18px;
+  list-style: none;
+}
+
+.Homepage-OurServicesContentMiddleList ion-col ul li::before {
+  display: inline-block;
+  width: 1em;
+  margin-left: -2em;
+  content: "\2022";
+  color: #159eec;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.Homepage-OurServicesContentMiddleText1,
+.Homepage-OurServicesContentMiddleText2 {
+  color: #212124;
+  max-width: 470px;
+  padding-bottom: 20px;
+}
+
+.Homepage-OurServicesContentRight {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Our Specialties */
+
+.Homepage-SpecialtiesSection {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding-bottom: 40px;
+}
+
+.Homepage-SpecialtiesInfo ion-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 40px 0;
+  border: 1px solid #dddddd;
+}
+
+/* Contact Section */
+
+.Homepage-ContactSection {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding-bottom: 40px;
+}
+
+.Homepage-ContactCard {
+  font-family: "Work Sans", sans-serif;
+  padding: 30px 30px 30px 30px;
+  --color: #000;
+  --background: #bfd2f8;
+}
+
+.Homepage-CardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #1f2b6c;
+}
+
+.Homepage-CardContent ion-card-title {
+  padding-top: 10px;
+  font-weight: 700;
+  font-size: 20px;
+  color: #1f2b6c;
+}
+
+.Homepage-CardContent ion-card-subtitle {
+  line-height: 140%;
+  font-size: 16px;
+  font-weight: 400;
+  color: #1f2b6c;
+}

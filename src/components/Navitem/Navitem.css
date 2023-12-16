@@ -1,0 +1,10 @@
+.NavItem-Default {
+  text-decoration: none;
+  color: #fff;
+  font-family: "Work Sans", sans-serif;
+}
+
+.NavItem-IsActive {
+  font-weight: 600;
+  color: #bfd2f8;
+}

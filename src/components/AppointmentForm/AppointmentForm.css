@@ -1,0 +1,33 @@
+.AppointmentForm-Form {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  width: 450px;
+  background-color: #bfd2f8;
+  height: fit-content;
+}
+
+.AppointmentForm-Form section {
+  background: #1f2b6c;
+  color: #fcfefe;
+  padding: 0 20px;
+}
+
+.AppointmentForm-Form section:nth-child(1) {
+  border-radius: 5px 5px 0 0;
+}
+
+.AppointmentForm-Date {
+  width: 450px;
+  padding: 20px 0;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+}
+
+.AppointmentForm-SubmitBtn {
+  --background: #bfd2f8;
+  --color: #1f2b6c;
+  --box-shadow: none;
+}

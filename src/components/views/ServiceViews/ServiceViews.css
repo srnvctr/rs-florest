@@ -1,0 +1,13 @@
+.ServiceViews-Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 150px;
+}
+
+.ServiceViews-Row {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+}

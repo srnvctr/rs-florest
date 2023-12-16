@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&family=Yeseva+One&display=swap"); */
+
+.Navbar-Container {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.Navbar-Wrapper {
+  display: flex;
+  background-color: #1f2b6c;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px 10px 20px;
+}
+
+.Navbar-Title ion-title {
+  font-family: "Yeseva One", serif;
+  font-size: 28px;
+  padding: 0;
+}
+
+.Navbar-Link {
+  display: flex;
+  text-decoration: none;
+  color: #fff;
+  gap: 10px;
+}
+
+.Navbar-Navitem {
+  display: flex;
+  gap: 20px;
+}
+
+.Navbar-Button {
+  display: flex;
+  gap: 10px;
+}
+
+.Navbar-Button ion-button {
+  text-transform: none;
+  font-size: 16px;
+  --background: #bfd2f8;
+  /* background-color: rgb(179, 179, 179); */
+
+  --color: #000;
+  --border-radius: 40px;
+  --box-shadow: none;
+
+  
+}
+
+.Navbar-Profile {
+  display: flex;
+  align-items: center;
+}
+
+.Navbar-Profile ion-button {
+  --background: transparent;
+  --background-hover: transparent;
+  --color: white;
+  position: relative;
+}
+
+.Navbar-Submenu {
+  position: absolute;
+  top: 50px;
+  display: flex;
+  flex-direction: column;
+  /* width: calc(100% -32px); */
+  right: 5px;
+}
+
+.Navbar-ProfileToggleIcon {
+  display: flex;
+  padding-left: 10px;
+}
+
+.Navbar-HamburgerIcon {
+  display: none;
+}
+
+.Navbar-HamburgerIcon img {
+  filter: invert(1);
+}
+
+@media (max-width: 800px) {
+  .Navbar-Navitem,
+  .Navbar-Button {
+    display: none;
+  }
+
+  .Navbar-Button ion-button {
+    display: none;
+  }
+
+  .Navbar-HamburgerIcon {
+    display: block;
+  }
+
+  .Navbar-HamburgerBtn {
+    --background: transparent;
+  }
+
+  .Menu-Overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: #1f2b6c;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 82px;
+    /* align-items: center; */
+  }
+
+  .Menu {
+    display: flex;
+    padding: 0 40px;
+    gap: 20px;
+    flex-direction: column;
+  }
+}

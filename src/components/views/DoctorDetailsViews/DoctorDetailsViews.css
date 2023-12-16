@@ -1,0 +1,21 @@
+.DoctorDetailsViews-Container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.DoctorDetailsViews-Content {
+  max-width: 700px;
+  margin-top: -1em;
+}
+
+.DoctorDetailsViews-Content h1 {
+  font-weight: 700;
+  font-size: 40px;
+  font-family: "Yeseva One", serif;
+  color: #1f2b6c;
+}
+
+.DoctorDetailsViews-Content p:last-child {
+  line-height: 1.9;
+}

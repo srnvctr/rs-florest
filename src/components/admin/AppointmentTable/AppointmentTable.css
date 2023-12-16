@@ -1,0 +1,14 @@
+.status-Pending {
+  font-weight: 700;
+  color: rgb(255, 132, 0);
+}
+
+.status-Approved {
+  font-weight: 700;
+  color: green;
+}
+
+.status-Declined {
+  font-weight: 700;
+  color: red;
+}

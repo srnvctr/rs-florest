@@ -1,0 +1,38 @@
+.NotFound_Wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  height: 92.5vh;
+}
+
+.NotFound_Title ion-title {
+  font-size: 180px;
+  font-weight: 900;
+  color: #000;
+}
+
+.NotFound_Title ion-text {
+  font-size: 48px;
+  font-weight: 900;
+  color: #000;
+}
+
+.NotFound_Description {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 5px;
+}
+
+.NotFound_Description ion-text {
+  font-size: 20px;
+  color: #4e4e57;
+}
+
+.NotFound_Button ion-button {
+  font-weight: 900;
+  text-transform: none;
+  --background: #1f2b6c;
+}

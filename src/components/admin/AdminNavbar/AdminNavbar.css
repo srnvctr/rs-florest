@@ -1,0 +1,33 @@
+.AdminNavbar-Container {
+  font-family: "Work Sans", sans-serif;
+  width: 20%;
+  border-right: 2px solid rgb(200, 200, 200);
+}
+
+.AdminNavbar-Container div {
+  background-color: #1f2b6c;
+  color: #fff;
+  padding: 5px 30px;
+}
+
+.AdminNavbar-Container h3 {
+  font-weight: 700;
+}
+
+.AdminNavbar-List {
+  padding: 10px 30px;
+  margin-left: -1em;
+}
+
+.AdminNavbar-List ion-item {
+  padding-bottom: 10px;
+}
+
+.AdminNavbar-Active {
+  color: #1f2b6c;
+  font-weight: 700;
+}
+
+.AdminNavbar-Active ion-icon {
+  color: #1f2b6c;
+}
