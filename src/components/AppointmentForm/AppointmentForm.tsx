@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useAuth } from "../../firebase/auth/AuthUserProvider";
 import { useFirebaseAuth } from "../../firebase/auth/useFirebaseAuth";
 import { useHistory } from "react-router";
+import { AppointmentData } from "../../firebase/auth/useFirebaseAuth";
 
 import "./AppointmentForm.css";
 
@@ -25,13 +26,30 @@ const AppointmentForm: React.FC = () => {
   const [selectedTime, setSelectedTime] = useState<string | undefined>("");
   const [availableTimes, setAvailableTimes] = useState<string[]>([]);
   const [doctorsBySpecialty, setDoctorsBySpecialty] = useState<string[]>([]);
+  const [selectedDoctorAppointments, setSelectedDoctorAppointments] = useState<
+    AppointmentData[]
+  >([]);
+  const [doctorAppointments, setDoctorAppointments] = useState<
+    AppointmentData[]
+  >([]);
 
   useEffect(() => {
     const fetchDoctorData = async () => {
       try {
-        await new Promise((resolve) => setTimeout(resolve, 3000));
-
         const doctors = await firebaseAuth.getDoctorData();
+
+        const doctorAppointmentsData = await firebaseAuth.getAppointmentData();
+        setDoctorAppointments(doctorAppointmentsData);
+
+        if (selectedDoctor && selectedDate) {
+          const selectedDoctorAppointments = doctorAppointmentsData.filter(
+            (appointment) =>
+              appointment.doctor === selectedDoctor &&
+              appointment.date === selectedDate.toLocaleDateString()
+          );
+          setSelectedDoctorAppointments(selectedDoctorAppointments);
+        }
+
         const specialtiesSet = new Set<string>();
         const doctorsList: string[] = [];
 
@@ -42,7 +60,6 @@ const AppointmentForm: React.FC = () => {
 
         setUniqueSpecialties(Array.from(specialtiesSet));
 
-        // Filter doctors based on the selected specialty
         if (selectedSpecialty) {
           const filteredDoctors = doctors.filter(
             (doctor) => doctor.specialty === selectedSpecialty
@@ -59,24 +76,7 @@ const AppointmentForm: React.FC = () => {
     };
 
     fetchDoctorData();
-  }, [firebaseAuth, selectedSpecialty]);
-
-  const handleSpecialtyChange = async (value: string | undefined) => {
-    setSelectedSpecialty(value);
-
-    // Set doctors based on the selected specialty
-    const doctorsData = await firebaseAuth.getDoctorData();
-    const doctors = doctorsData.filter((doctor) => doctor.specialty === value);
-    setDoctorsBySpecialty(doctors.map((doctor) => doctor.name));
-
-    // Clear selected doctor when changing specialty
-    setSelectedDoctor("");
-  };
-
-  const handleDateChange = (date: Date | null) => {
-    setSelectedDate(date);
-    setSelectedTime("");
-  };
+  }, [firebaseAuth, selectedSpecialty, selectedDoctor, selectedDate]);
 
   useEffect(() => {
     const isSunday = selectedDate?.getDay() === 0;
@@ -87,18 +87,40 @@ const AppointmentForm: React.FC = () => {
           const timeString = `${hour.toString().padStart(2, "0")}:${minute
             .toString()
             .padStart(2, "0")}`;
-          times.push(timeString);
+
+          const isTimeSelected = selectedDoctorAppointments.some(
+            (appointment) => appointment.time === timeString
+          );
+
+          if (!isTimeSelected) {
+            times.push(timeString);
+          }
         }
       }
       setAvailableTimes(times);
     } else {
       setAvailableTimes([]);
     }
-  }, [selectedDate]);
+  }, [selectedDate, selectedDoctor, selectedDoctorAppointments]);
 
   useEffect(() => {
     setEmail(auth.user.email || null);
   }, [auth.user]);
+
+  const handleSpecialtyChange = async (value: string | undefined) => {
+    setSelectedSpecialty(value);
+
+    const doctorsData = await firebaseAuth.getDoctorData();
+    const doctors = doctorsData.filter((doctor) => doctor.specialty === value);
+    setDoctorsBySpecialty(doctors.map((doctor) => doctor.name));
+
+    setSelectedDoctor("");
+  };
+
+  const handleDateChange = (date: Date | null) => {
+    setSelectedDate(date);
+    setSelectedTime("");
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -111,6 +133,18 @@ const AppointmentForm: React.FC = () => {
       !nameInput
     ) {
       alert("Please fill in all fields");
+      return;
+    }
+
+    const isTimeAvailable = !doctorAppointments.find(
+      (appointment) =>
+        appointment.doctor === selectedDoctor &&
+        appointment.date === selectedDate?.toLocaleDateString() &&
+        appointment.time === selectedTime
+    );
+
+    if (!isTimeAvailable) {
+      alert("The selected time is not available. Please choose another time.");
       return;
     }
 
@@ -128,10 +162,8 @@ const AppointmentForm: React.FC = () => {
     };
 
     try {
-      // Add the appointment to Firebase
       await auth.addAppointment(appointmentData);
 
-      // Reset form values
       setNameInput("");
       setSelectedSpecialty("");
       setSelectedDoctor("");
@@ -139,12 +171,9 @@ const AppointmentForm: React.FC = () => {
       setSelectedTime("");
 
       alert("Appointment created successfully!");
-      history.push("/myAppointment")
-
+      history.push("/myAppointment");
     } catch (error) {
       console.error("Error adding appointment: ", error);
-
-      // Show error alert
       alert("Failed to create appointment. Please try again.");
     }
   };
@@ -171,7 +200,6 @@ const AppointmentForm: React.FC = () => {
           value={selectedSpecialty}
           onIonChange={(e) => {
             handleSpecialtyChange(e.detail.value);
-            // setSelectedDoctor("");
           }}
         >
           {uniqueSpecialties.map((specialty) => (
