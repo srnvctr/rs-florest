@@ -7,7 +7,7 @@ import {
   deleteDoc,
   query,
   where,
-  getDoc,
+  getDoc, onSnapshot
 } from "firebase/firestore";
 import { db } from "../config";
 import { useState, useEffect } from "react";
@@ -77,23 +77,23 @@ export const useAppointments = () => {
     }
   };
 
-  const fetchAppointmentData = async (
-    userId: string
-  ): Promise<AppointmentData[]> => {
+  const fetchAppointmentData = (userId: string, setAppointmentDataList: React.Dispatch<React.SetStateAction<AppointmentData[]>>): (() => void) => {
     try {
       const appointmentsCollection = collection(db, "appointments");
       const q = query(appointmentsCollection, where("userId", "==", userId));
-      const appointmentsSnapshot = await getDocs(q);
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const appointmentData: AppointmentData[] = querySnapshot.docs.map(
+          (doc) => ({ id: doc.id, ...doc.data() } as AppointmentData)
+        );
 
-      const appointmentData: AppointmentData[] = appointmentsSnapshot.docs.map(
-        (doc) => ({ id: doc.id, ...doc.data() } as AppointmentData)
-      );
+        // Update the state directly within the component
+        setAppointmentDataList(appointmentData);
+      });
 
-      setAppointments(appointmentData);
-      return appointmentData || [];
+      return unsubscribe;
     } catch (error) {
       console.error("Error fetching appointment data:", error);
-      return [];
+      return () => {};
     }
   };
 
@@ -111,26 +111,33 @@ export const useAppointments = () => {
         status: appointmentData.status,
         timestamp: new Date(),
       });
-
+  
       const newAppointmentId = appointmentDocRef.id;
-
+  
+      // Update the appointment document with its own ID
       await updateDoc(appointmentDocRef, { id: newAppointmentId });
-
-      const userDocRef = doc(db, "users", appointmentData.userId);
+  
+      // Update the user document in the "user" collection (not "users")
+      const userDocRef = doc(db, "user", appointmentData.userId);  // Corrected path
       const userDoc = await getDoc(userDocRef);
       const userData = userDoc.data();
-
+  
       if (userData) {
-        await updateDoc(userDocRef, {
-          myAppointment: [...userData.myAppointment, newAppointmentId],
-        });
-
+        // Update the user document to include the new appointment ID
+        const updatedUserAppointment = [
+          ...userData.myAppointment,
+          newAppointmentId,
+        ];
+        await updateDoc(userDocRef, { myAppointment: updatedUserAppointment });
+  
+        // Update the local state with the new appointments
         await fetchAppointmentsFromFirebase(appointmentData.userId);
       }
     } catch (error) {
       console.error("Error adding appointment: ", error);
     }
   };
+  
 
   const deleteAppointment = async (id: string) => {
     try {

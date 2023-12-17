@@ -30,7 +30,7 @@ export const authUserContext = createContext<AuthType>({
     email: null,
     number: null,
     address: null,
-    // myAppointment: [],
+    myAppointment: [],
     role: null,
   },
   signUp: async (name, email, password) => {

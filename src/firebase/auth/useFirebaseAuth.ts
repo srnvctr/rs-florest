@@ -26,7 +26,7 @@ export function useFirebaseAuth() {
     address: null,
     number: null,
     email: null,
-    // myAppointment: [],
+    myAppointment: [],
     role: null,
   });
 
@@ -41,7 +41,7 @@ export function useFirebaseAuth() {
           email: userData!.email,
           number: userData!.number,
           address: userData!.address,
-          // myAppointment: userData!.myAppointment,
+          myAppointment: userData!.myAppointment,
           role: userData!.role,
         });
       } else {
@@ -52,7 +52,7 @@ export function useFirebaseAuth() {
           email: null,
           number: null,
           address: null,
-          // myAppointment: [],
+          myAppointment: [],
           role: null,
         });
       }
@@ -84,7 +84,7 @@ export function useFirebaseAuth() {
         id: userCredential.user.uid,
         name,
         email,
-        // myAppointment: [] as string[],
+        myAppointment: [] as string[],
         role: "2",
       } as UserType;
 
@@ -113,7 +113,7 @@ export function useFirebaseAuth() {
         email: userData!.email,
         number: userData!.number,
         address: userData!.address,
-        // myAppointment: userData!.myAppointment,
+        myAppointment: userData!.myAppointment,
         role: userData!.role,
       });
 
@@ -132,7 +132,7 @@ export function useFirebaseAuth() {
       number: null,
       gender: null,
       address: null,
-      // myAppointment: [],
+      myAppointment: [],
       role: null,
     });
     return await signOut(auth);

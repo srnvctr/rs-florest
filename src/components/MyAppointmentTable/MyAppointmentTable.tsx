@@ -18,24 +18,17 @@ const MyAppointmentTable: React.FC = () => {
     const fetchData = async () => {
       try {
         if (auth.user.id !== null) {
-          const fetchedAppointmentDataList = await fetchAppointmentData(
-            auth.user.id
-          );
-          console.log(
-            "Fetched Appointment Data List:",
-            fetchedAppointmentDataList
-          );
-          setAppointmentDataList(
-            fetchedAppointmentDataList.filter(
-              (data) => data !== null
-            ) as AppointmentData[]
-          );
+          // Subscribe to real-time updates
+          const unsubscribe = fetchAppointmentData(auth.user.id, setAppointmentDataList);
+  
+          // Unsubscribe from real-time updates when the component unmounts
+          return () => unsubscribe();
         }
       } catch (error) {
         console.error("Error fetching appointment data:", error);
       }
     };
-
+  
     fetchData();
   }, [auth.user.id]);
 
