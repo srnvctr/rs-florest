@@ -12,6 +12,7 @@ export interface UserType {
   number: string | null;
   address: string | null;
   myAppointment: string[];
+  role: string | null;
 }
 
 export interface AppointmentData {
@@ -33,6 +34,7 @@ export const userConverter = {
       number: user.number,
       address: user.address,
       myAppointment: user.myAppointment,
+      role: user.role,
     };
   },
   fromFirestore: (
@@ -49,6 +51,7 @@ export const userConverter = {
       number: data?.number,
       address: data?.address,
       myAppointment: data?.myAppointment || [],
+      role: data?.role,
     } as UserType;
   },
 };

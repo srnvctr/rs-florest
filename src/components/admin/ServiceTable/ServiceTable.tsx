@@ -1,31 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { useFirebaseAuth } from "../../../firebase/auth/useFirebaseAuth";
 import { IonAlert, IonButton, IonIcon } from "@ionic/react";
 import { createOutline, trashOutline } from "ionicons/icons";
-
+import {
+  getService,
+  createService,
+  updateService,
+  deleteService,
+} from "../../../firebase/service/service";
 import ServiceFormCreate from "../ServiceFormCreate";
 import ServiceFormEdit from "../ServiceFormEdit";
 
-import "./ServiceTabel.css";
+import "./ServiceTabel.css"
 
 const ServiceTable: React.FC = () => {
-  const {
-    services,
-    loading,
-    fetchServicesFromFirebase,
-    deleteService,
-    createService,
-    updateService,
-  } = useFirebaseAuth();
+  const [services, setServices] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [serviceToDelete, setServiceToDelete] = useState<string | null>(null);
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [editServiceData, setEditServiceData] = useState<any | null>(null);
 
+  const fetchData = async () => {
+    try {
+      const serviceData = await getService();
+      setServices(serviceData);
+      console.log(serviceData);
+    } catch (error) {
+      console.error("Error fetching services:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    fetchServicesFromFirebase();
-  }, [fetchServicesFromFirebase]);
+    fetchData();
+  }, []);
 
   const handleEdit = (id: string) => {
     const serviceToEdit = services.find((service) => service.id === id);
@@ -49,6 +59,7 @@ const ServiceTable: React.FC = () => {
       await createService(formData);
       alert("Service created successfully!");
       setCreateModalOpen(false);
+      fetchData();
     } catch (error) {
       alert("Error creating service!");
       console.error("Error creating service:", error);
@@ -62,6 +73,7 @@ const ServiceTable: React.FC = () => {
         alert("Service updated successfully!");
         setEditServiceData(null);
         setEditModalOpen(false);
+        fetchData();
       }
     } catch (error) {
       alert("Error updating service!");
@@ -138,7 +150,7 @@ const ServiceTable: React.FC = () => {
   };
 
   return (
-    <main style={{width: "100%"}}>
+    <main style={{ width: "100%" }}>
       <div className="ion-padding">
         <h1>Service Table</h1>
         <IonButton onClick={handleCreateService}>Create Service</IonButton>
@@ -163,6 +175,8 @@ const ServiceTable: React.FC = () => {
                 if (serviceToDelete) {
                   deleteService(serviceToDelete);
                   setServiceToDelete(null);
+                  setShowDeleteAlert(false);
+                  fetchData();
                 }
               },
             },

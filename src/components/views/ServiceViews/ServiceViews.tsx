@@ -2,16 +2,30 @@ import React, { useEffect } from "react";
 import { IonGrid, IonRow, IonCol } from "@ionic/react";
 import ServiceCard from "../../ServiceCard";
 import Layoutpage from "../../Layoutpage";
-import { useFirebaseAuth } from "../../../firebase/auth/useFirebaseAuth";
+import { useState } from "react";
+import { getService } from "../../../firebase/service/service";
 
 import "./ServiceViews.css";
 
 const ServiceViews: React.FC = () => {
-  const { services, loading, fetchServicesFromFirebase } = useFirebaseAuth();
+  const [services, setServices] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchServicesFromFirebase();
-  }, [fetchServicesFromFirebase]);
+    const fetchData = async () => {
+      try {
+        const serviceData = await getService();
+        setServices(serviceData);
+        console.log(serviceData);
+      } catch (error) {
+        console.error("Error fetching services:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;

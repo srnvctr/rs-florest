@@ -18,13 +18,33 @@ const LoginForm: React.FC = () => {
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Validasi input field
+    if (!email || !password) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
     try {
-      e.preventDefault();
       const result = await auth.logIn(email, password);
+
       if (result !== undefined) {
+        const role = await auth.getRole(result.user.uid);
+
         console.log(result.user.uid);
         alert("Login successful!");
-        history.push("/home");
+
+        // Reset state setelah login
+        setEmail("");
+        setPassword("");
+
+        if (role === "1") {
+          console.log("Admin login");
+          history.push("/admin/service");
+        } else if (role === "2") {
+          history.push("/home");
+        }
       }
     } catch (error) {
       console.error("Login error:", error);

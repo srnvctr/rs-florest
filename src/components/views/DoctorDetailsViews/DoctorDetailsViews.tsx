@@ -1,28 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { IonContent, IonList, IonItem } from "@ionic/react";
+import { IonList, IonItem } from "@ionic/react";
 import { useParams } from "react-router-dom";
 import Layoutpage from "../../Layoutpage";
 import _404 from "../../../pages/_404";
-import { collection, query, where, getDocs } from "@firebase/firestore";
-import { db } from "../../../firebase/config";
+import { getDoctor } from "../../../firebase/doctor/doctor";
+import { Doctor } from "../../../firebase/doctor/doctor";
 
 import "./DoctorDetailsViews.css";
 
 const DoctorDetailsViews: React.FC = () => {
   const { name } = useParams<{ name: string }>();
-  const [doctor, setDoctor] = useState<any | null>(null);
+  const [doctor, setDoctor] = useState<Doctor | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchDoctor = async () => {
       try {
-        const doctorsCollection = collection(db, "doctors");
-        const q = query(doctorsCollection, where("name", "==", name));
-        const querySnapshot = await getDocs(q);
+        const doctorData = await getDoctor();
 
-        if (!querySnapshot.empty) {
-          const doctorData = querySnapshot.docs[0].data();
-          setDoctor(doctorData);
+        const foundDoctor = doctorData.find((doc) => doc.name === name);
+
+        if (foundDoctor) {
+          setDoctor(foundDoctor);
         } else {
           setDoctor(null);
         }

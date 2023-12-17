@@ -1,31 +1,42 @@
 import React, { useEffect, useState } from "react";
-import { useFirebaseAuth } from "../../../firebase/auth/useFirebaseAuth";
 import { IonAlert, IonButton, IonIcon } from "@ionic/react";
 import { createOutline, trashOutline } from "ionicons/icons";
-
 import DoctorFormCreate from "../DoctorFormCreate";
 import DoctorFormEdit from "../DoctorFormEdit";
+
+import {
+  getDoctor,
+  createDoctor,
+  updateDoctor,
+  deleteDoctor,
+  Doctor,
+} from "../../../firebase/doctor/doctor";
 
 import "./DoctorTable.css";
 
 const DoctorTable: React.FC = () => {
-  const {
-    doctors,
-    loading,
-    fetchDoctorsFromFirebase,
-    deleteDoctor,
-    createDoctor,
-    updateDoctor,
-  } = useFirebaseAuth();
+  const [doctors, setDoctors] = useState<Doctor[]>([]);
+  const [loading, setLoading] = useState(true);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [doctorToDelete, setDoctorToDelete] = useState<string | null>(null);
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
-  const [editDoctorData, setEditDoctorData] = useState<any | null>(null);
+  const [editDoctorData, setEditDoctorData] = useState<Doctor | null>(null);
 
   useEffect(() => {
-    fetchDoctorsFromFirebase();
-  }, [fetchDoctorsFromFirebase]);
+    const fetchDoctors = async () => {
+      try {
+        const doctorData = await getDoctor();
+        setDoctors(doctorData);
+      } catch (error) {
+        console.error("Error fetching doctors:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDoctors();
+  }, []);
 
   const handleEdit = (id: string) => {
     const doctorToEdit = doctors.find((doctor) => doctor.id === id);
@@ -49,6 +60,10 @@ const DoctorTable: React.FC = () => {
       await createDoctor(formData);
       alert("Doctor created successfully!");
       setCreateModalOpen(false);
+
+      // Update doctors data after creating a new doctor
+      const updatedDoctorData = await getDoctor();
+      setDoctors(updatedDoctorData);
     } catch (error) {
       alert("Error creating doctor!");
       console.error("Error creating doctor:", error);
@@ -62,10 +77,30 @@ const DoctorTable: React.FC = () => {
         alert("Doctor updated successfully!");
         setEditDoctorData(null);
         setEditModalOpen(false);
+
+        // Update doctors data after editing a doctor
+        const updatedDoctorData = await getDoctor();
+        setDoctors(updatedDoctorData);
       }
     } catch (error) {
       alert("Error updating doctor!");
       console.error("Error updating doctor:", error);
+    }
+  };
+
+  const handleDeleteConfirmation = async () => {
+    try {
+      if (doctorToDelete) {
+        await deleteDoctor(doctorToDelete);
+        setShowDeleteAlert(false);
+        setDoctorToDelete(null);
+
+        // Update doctors data after deleting a doctor
+        const updatedDoctorData = await getDoctor();
+        setDoctors(updatedDoctorData);
+      }
+    } catch (error) {
+      console.error("Error deleting doctor:", error);
     }
   };
 
@@ -154,12 +189,7 @@ const DoctorTable: React.FC = () => {
             },
             {
               text: "Delete",
-              handler: () => {
-                if (doctorToDelete) {
-                  deleteDoctor(doctorToDelete);
-                  setDoctorToDelete(null);
-                }
-              },
+              handler: handleDeleteConfirmation,
             },
           ]}
         />

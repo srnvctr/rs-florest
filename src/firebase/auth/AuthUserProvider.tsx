@@ -21,7 +21,7 @@ interface AuthType {
   updateNumber: (text: string) => Promise<void>;
   updateGender: (text: string) => Promise<void>;
   updateAddress: (text: string) => Promise<void>;
-  addAppointment: (appointmentData: AppointmentData) => Promise<void>;
+  getRole: (uid: string) => Promise<string>;
 }
 
 export const authUserContext = createContext<AuthType>({
@@ -33,6 +33,7 @@ export const authUserContext = createContext<AuthType>({
     number: null,
     address: null,
     myAppointment: [],
+    role: null,
   },
   signUp: async (name, email, password) => {
     throw new Error("Function not implemented.");
@@ -55,9 +56,9 @@ export const authUserContext = createContext<AuthType>({
   updateAddress: async (address) => {
     throw new Error("Function not implemented.");
   },
-  addAppointment: async (appointmentData) => {
+  getRole: async (uid) => {
     throw new Error("Function not implemented.");
-  }, // Add this line
+  },
 });
 
 interface AuthUserProviderProps {
@@ -76,7 +77,7 @@ export function AuthUserProvider({ children }: AuthUserProviderProps) {
     updateNumber: auth.updateNumber,
     updateGender: auth.updateGender,
     updateAddress: auth.updateAddress,
-    addAppointment: auth.addAppointment,
+    getRole: auth.getRole,
   };
 
   return (
