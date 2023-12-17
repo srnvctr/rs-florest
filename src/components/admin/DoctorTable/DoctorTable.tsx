@@ -28,6 +28,7 @@ const DoctorTable: React.FC = () => {
       try {
         const doctorData = await getDoctor();
         setDoctors(doctorData);
+        console.log("Fetched doctors:", doctorData);
       } catch (error) {
         console.error("Error fetching doctors:", error);
       } finally {

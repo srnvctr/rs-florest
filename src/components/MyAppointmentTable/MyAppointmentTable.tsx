@@ -1,56 +1,30 @@
-import React, { useMemo, useEffect, useState } from "react";
-import {
-  MaterialReactTable,
-  useMaterialReactTable,
-  MRT_ColumnDef,
-} from "material-react-table";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../../firebase/auth/AuthUserProvider";
-import { useAppointments, AppointmentData } from "../../firebase/appointment/appointment";
+import {
+  useAppointments,
+  AppointmentData,
+} from "../../firebase/appointment/appointment";
+import "./MyAppointmentTable.css";
 
 const MyAppointmentTable: React.FC = () => {
   const auth = useAuth();
   const { fetchAppointmentData } = useAppointments();
 
-  const [appointmentDataList, setAppointmentDataList] = useState<AppointmentData[]>([]);
-
-  const columns = useMemo<MRT_ColumnDef<AppointmentData>[]>(
-    () => [
-      {
-        accessorKey: "doctor",
-        header: "Doctor Name",
-      },
-      {
-        accessorKey: "specialty",
-        header: "Specialty",
-      },
-      {
-        accessorKey: "date",
-        header: "Appointment Date",
-      },
-      {
-        accessorKey: "time",
-        header: "Appointment Time",
-      },
-      {
-        accessorKey: "status",
-        header: "Appointment Status",
-      },
-    ],
-    []
-  );
-
-  const table = useMaterialReactTable({
-    columns,
-    data: appointmentDataList,
-    columnFilterDisplayMode: "popover",
-  });
+  const [appointmentDataList, setAppointmentDataList] = useState<
+    AppointmentData[]
+  >([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (auth.user.id !== null) {
-          const fetchedAppointmentDataList = await fetchAppointmentData(auth.user.id);
-          console.log("Fetched Appointment Data List:", fetchedAppointmentDataList);
+          const fetchedAppointmentDataList = await fetchAppointmentData(
+            auth.user.id
+          );
+          console.log(
+            "Fetched Appointment Data List:",
+            fetchedAppointmentDataList
+          );
           setAppointmentDataList(
             fetchedAppointmentDataList.filter(
               (data) => data !== null
@@ -61,11 +35,38 @@ const MyAppointmentTable: React.FC = () => {
         console.error("Error fetching appointment data:", error);
       }
     };
-  
-    fetchData();
-  }, [auth.user.id, fetchAppointmentData]);
 
-  return <MaterialReactTable table={table} />;
+    fetchData();
+  }, [auth.user.id]);
+
+  return (
+    <div className="my-appointment-table-container">
+      <table className="my-appointment-table">
+        <thead>
+          <tr>
+            <th>Doctor Name</th>
+            <th>Specialty</th>
+            <th>Appointment Date</th>
+            <th>Appointment Time</th>
+            <th>Appointment Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {appointmentDataList.map((appointment) => (
+            <tr key={appointment.id}>
+              <td>{appointment.doctor}</td>
+              <td>{appointment.specialty}</td>
+              <td>{appointment.date}</td>
+              <td>{appointment.time}</td>
+              <td className={`status-${appointment.status}`}>
+                {appointment.status}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default MyAppointmentTable;

@@ -3,8 +3,6 @@ import { UserCredential } from "firebase/auth";
 import { useFirebaseAuth } from "./useFirebaseAuth";
 import { UserType } from "./user";
 
-import { AppointmentData } from "./useFirebaseAuth";
-
 interface AuthType {
   user: UserType;
   signUp: (
@@ -32,7 +30,7 @@ export const authUserContext = createContext<AuthType>({
     email: null,
     number: null,
     address: null,
-    myAppointment: [],
+    // myAppointment: [],
     role: null,
   },
   signUp: async (name, email, password) => {

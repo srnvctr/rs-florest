@@ -48,7 +48,7 @@ const App: React.FC = () => (
       <IonRouterOutlet>
         <Route exact path="/home">
           {/* <ProtectedRoute> */}
-            <Home />
+          <Home />
           {/* </ProtectedRoute> */}
         </Route>
         <Route exact path="/">
@@ -70,9 +70,7 @@ const App: React.FC = () => (
           <DoctorDetails />
         </Route>
         <Route exact path="/appointment">
-          {/* <ProtectedRoute> */}
-            <Appointment />
-          {/* </ProtectedRoute> */}
+          <Appointment />
         </Route>
         <Route>
           <_404 />
@@ -90,19 +88,19 @@ const App: React.FC = () => (
           <MyAppointment />
         </Route>
         <Route exact path="/admin/service">
-          {/* <ProtectedRoute> */}
+          <ProtectedRoute>
             <AdminService />
-          {/* </ProtectedRoute> */}
+          </ProtectedRoute>
         </Route>
         <Route exact path="/admin/doctor">
-          {/* <ProtectedRoute> */}
+          <ProtectedRoute>
             <AdminDoctor />
-          {/* </ProtectedRoute> */}
+          </ProtectedRoute>
         </Route>
         <Route exact path="/admin/appointment">
-          {/* <ProtectedRoute> */}
+          <ProtectedRoute>
             <AdminAppointment />
-          {/* </ProtectedRoute> */}
+          </ProtectedRoute>
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>

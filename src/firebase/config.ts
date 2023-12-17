@@ -28,12 +28,20 @@ const firebaseConfig = {
   // appId: "1:1021696540932:web:dcb9249f5fac854d711051"
 
   // test firebase 3
-  apiKey: "AIzaSyDIbI86K5XW445d4zWCszSuGyApfzvnTEs",
-  authDomain: "rspelorest.firebaseapp.com",
-  projectId: "rspelorest",
-  storageBucket: "rspelorest.appspot.com",
-  messagingSenderId: "327341936044",
-  appId: "1:327341936044:web:f4571cf8badaeffe907e09",
+  // apiKey: "AIzaSyDIbI86K5XW445d4zWCszSuGyApfzvnTEs",
+  // authDomain: "rspelorest.firebaseapp.com",
+  // projectId: "rspelorest",
+  // storageBucket: "rspelorest.appspot.com",
+  // messagingSenderId: "327341936044",
+  // appId: "1:327341936044:web:f4571cf8badaeffe907e09",
+
+  // test firebase 4
+  apiKey: "AIzaSyD7E9yI7KyCo_-mtPPoZtN_nUp0Kv5UG0U",
+  authDomain: "rsfloresta-654e7.firebaseapp.com",
+  projectId: "rsfloresta-654e7",
+  storageBucket: "rsfloresta-654e7.appspot.com",
+  messagingSenderId: "419550967922",
+  appId: "1:419550967922:web:4cda6787bd0e6960f62aeb",
 };
 
 const app = initializeApp(firebaseConfig);

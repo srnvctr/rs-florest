@@ -18,19 +18,6 @@ import { auth, db } from "../config";
 import { UserType, userConverter } from "./user";
 import { useState, useEffect } from "react";
 
-export interface AppointmentData {
-  id: string;
-  userId: string;
-  name: string;
-  email: string;
-  doctor: string;
-  specialty: string;
-  date: string;
-  time: string;
-  status: string;
-  timestamp: Date;
-}
-
 export function useFirebaseAuth() {
   const [user, setUser] = useState<UserType>({
     id: null,
@@ -39,7 +26,7 @@ export function useFirebaseAuth() {
     address: null,
     number: null,
     email: null,
-    myAppointment: [],
+    // myAppointment: [],
     role: null,
   });
 
@@ -54,7 +41,7 @@ export function useFirebaseAuth() {
           email: userData!.email,
           number: userData!.number,
           address: userData!.address,
-          myAppointment: userData!.myAppointment,
+          // myAppointment: userData!.myAppointment,
           role: userData!.role,
         });
       } else {
@@ -65,7 +52,7 @@ export function useFirebaseAuth() {
           email: null,
           number: null,
           address: null,
-          myAppointment: [],
+          // myAppointment: [],
           role: null,
         });
       }
@@ -97,7 +84,7 @@ export function useFirebaseAuth() {
         id: userCredential.user.uid,
         name,
         email,
-        myAppointment: [] as string[],
+        // myAppointment: [] as string[],
         role: "2",
       } as UserType;
 
@@ -126,7 +113,7 @@ export function useFirebaseAuth() {
         email: userData!.email,
         number: userData!.number,
         address: userData!.address,
-        myAppointment: userData!.myAppointment,
+        // myAppointment: userData!.myAppointment,
         role: userData!.role,
       });
 
@@ -145,7 +132,7 @@ export function useFirebaseAuth() {
       number: null,
       gender: null,
       address: null,
-      myAppointment: [],
+      // myAppointment: [],
       role: null,
     });
     return await signOut(auth);

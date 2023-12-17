@@ -11,7 +11,7 @@ export interface UserType {
   email: string | null;
   number: string | null;
   address: string | null;
-  myAppointment: string[];
+  // myAppointment: string[];
   role: string | null;
 }
 
@@ -33,7 +33,7 @@ export const userConverter = {
       email: user.email,
       number: user.number,
       address: user.address,
-      myAppointment: user.myAppointment,
+      // myAppointment: user.myAppointment,
       role: user.role,
     };
   },
@@ -50,7 +50,7 @@ export const userConverter = {
       email: data!.email,
       number: data?.number,
       address: data?.address,
-      myAppointment: data?.myAppointment || [],
+      // myAppointment: data?.myAppointment || [],
       role: data?.role,
     } as UserType;
   },

@@ -26,6 +26,7 @@ const AppointmentTable: React.FC = () => {
       try {
         const appointmentData = await getAppointmentData();
         setAppointments(appointmentData);
+        console.log("Fetched appointments:", appointmentData);
       } catch (error) {
         console.error("Error fetching appointments:", error);
       }
